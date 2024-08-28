@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Lottery Number Generator</h2>
+    <h3 class = "partOneNumbers"></h3>
+    <h3 class = "partTwoNumbers"></h3>
+</body>
+<script>
+    // Saw what example did with "refTo" for body tag classes, and liked the clean naming system, will use from now on
+    //    rather than make a completely different variable to refer to class tags
+    let refToPartOneNumbers = document.querySelector('.partOneNumbers');
+    let refToPartTwoNumbers = document.querySelector('.partTwoNumbers');
+
+    // initialize the variables we will need for loops
+    // make sure to reset variables before next loop, didn't initially and it caused problem 
+    let generatedNum = 0;
+    printedOutNumberStr = "First set of numbers [ "
+
+    // had to look at solution for help for this part, but tried to at least see if I could experiment a little bit
+    //   and make my own different with my own knowledge
+    for (index = 1; index <= 6; index++) {
+        generatedNum = Math.floor(Math.random() * 50);
+        // Neat way of logging each number made along the way
+        console.log("The " + index + " number is " + generatedNum + " (PART 1)");
+        printedOutNumberStr += generatedNum.toString();
+        if (index < 6) {
+            printedOutNumberStr += ",  "
+        }
+        else {
+            printedOutNumberStr += " ]"
+        }
+    }
+
+
+    // thought maybe I would need .innerHTML to properly display but it still worked fine with .textContent
+    refToPartOneNumbers.innerHTML = printedOutNumberStr;
+    
+    //because of while loop make sure to set index to something outside of loop before it starts,
+    index = 0;
+    printedOutNumberStr = "Second set of numbers [ ";
+
+    // After seeing how part 1 made loop, figured out part 2. Overall liked how the for loops did this scenario more than while
+    while (!(index == 6)) {
+        generatedNum = Math.floor(Math.random() * 50);
+        console.log("The " + index + " number is " + generatedNum + " ( PART 2)");
+        printedOutNumberStr += generatedNum.toString();
+        if (index < 5) {
+            printedOutNumberStr += ",  ";
+        }
+        else {
+            printedOutNumberStr += " ]"
+        }
+        // remember, incrementing index should be the last step in the while loop to ensure everything happens normally
+        index++;
+    }
+
+    // because variable responsible for printing out was reset before second loop but after first, we can use it again
+    refToPartTwoNumbers.innerHTML = printedOutNumberStr;
+</script>
+</html>
